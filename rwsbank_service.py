@@ -11,7 +11,7 @@ tz = str(datetime.now(pytz.timezone('Europe/Kiev')))[26:]
 
 def prepare_tender_data(role, data):
     if role == 'tender_owner':
-        data['data']['procuringEntity']['name'] = u'Ubisoft'
+        data['data']['procuringEntity']['name'] = u'Тестовый организатор "Банк Ликвидатор"'
     return data
 
 
@@ -129,6 +129,6 @@ def download_file(url, filename, folder):
 
 
 def my_file_path():
-    return os.path.join(os.getcwd(), 'src', 'robot_tests.broker.setam', 'Doc.pdf')
+    return os.path.join(os.getcwd(), 'src', 'robot_tests.broker.rwsbank', 'Doc.pdf')
 
 

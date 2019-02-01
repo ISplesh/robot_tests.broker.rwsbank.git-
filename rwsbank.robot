@@ -17,11 +17,11 @@ ${acceleration}=  70
     Set Suite Variable  ${my_alias}  my_${username}
     ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
     Run Keyword If  '${USERS.users['${username}'].browser}' in 'Chrome chrome'  Run Keywords
-#    ...  Call Method  ${chrome_options}  add_argument  --headless
-    ...  Create Webdriver  Chrome  alias=${my_alias}  chrome_options=${chrome_options}
+    ...  Call Method  ${chrome_options}  add_argument  --headless
+    ...  AND  Create Webdriver  Chrome  alias=${my_alias}  chrome_options=${chrome_options}
     ...  AND  Go To  ${USERS.users['${username}'].homepage}
     ...  ELSE  Open Browser  ${USERS.users['${username}'].homepage}  ${USERS.users['${username}'].browser}  alias=${my_alias}
-    Set Window Size  1920  1080
+    Set Window Size  ${USERS.users['${username}'].size[0]}  ${USERS.users['${username}'].size[1]}
     Run Keyword If  'Viewer' not in '${username}'  Run Keywords
     ...  Авторизація  ${username}
     ...  AND  Run Keyword And Ignore Error  Закрити Модалку
@@ -65,8 +65,6 @@ ${acceleration}=  70
     Input Text  xpath=//*[@id="tender-description"]  ${tender_data.data.description}
     Input Text  xpath=//*[@id="tender-dgfid"]  ${tender_data.data.dgfID}
     ${decision_date}=  dgf_decision_date_for_site  ${data.dgfDecisionDate}
-    Wait Until Element Is Visible  xpath=//*[@id="dgf-decision-date"]
-    Scroll To  xpath=//*[@id="dgf-decision-date"]
     Input Text  xpath=//*[@id="dgf-decision-date"]  ${decision_date}
     Input Text  xpath=//*[@id="tender-dgfdecisionid"]  ${data.dgfDecisionID}
     ${tenderAttempts}=  Convert To String  ${tender_data.data.tenderAttempts}
@@ -81,7 +79,7 @@ ${acceleration}=  70
     Input Text  //*[@id="contactpoint-name"]  ${data.procuringEntity.contactPoint.name}
     Input Text  //*[@id="contactpoint-email"]  ${data.procuringEntity.contactPoint.email}
     Input Text  //*[@id="contactpoint-telephone"]  '000${data.procuringEntity.contactPoint.telephone}'
-    Execute Javascript  $("input[name='procurementMethodDetails']").val("quick, accelerator=70");
+    Execute Javascript  $('#draft-submit').before('<input type="hidden" name="procurementMethodDetails" value="quick, accelerator=${acceleration}">');
     Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="tenderID"]  20
     ${auction_id}=  Get Text  xpath=//div[@data-test-id="tenderID"]
@@ -105,7 +103,7 @@ ${acceleration}=  70
     Select From List By Value  xpath=//*[@id="deliveryaddress-${item}-countryname"]  ${item_data.deliveryAddress.countryName}
     Scroll To  xpath=//*[@id="deliveryaddress-${item}-region"]
     Wait Until Element Is Visible  xpath=//option[contains(text(), "Регіон")]
-    Select From List By Label  xpath=//*[@id="deliveryaddress-${item}-region"]  ${item_data.deliveryAddress.region}
+    Select From List By Label  xpath=//*[@id="deliveryaddress-${item}-region"]  ${item_data.deliveryAddress.region.replace(u'місто Київ', u'Київ')}
     Input Text  xpath=//*[@id="deliveryaddress-${item}-locality"]  ${item_data.deliveryAddress.locality}
     Input Text  xpath=//*[@id="deliveryaddress-${item}-streetaddress"]  ${item_data.deliveryAddress.streetAddress}
     Input Text  xpath=//*[@id="deliveryaddress-${item}-postalcode"]  ${item_data.deliveryAddress.postalCode}
@@ -419,7 +417,7 @@ Proposition
     [Arguments]  ${username}  ${tender_uaid}  ${field}
     rwsbank.Пошук Тендера По Ідентифікатору  ${username}  ${tender_uaid}
     rwsbank.Перейти на сторінку кваліфікації
-    Click Element  xpath=//button[@class="mk-btn mk-btn_default"][contains(text(), 'Договір')]
+    Click Element  xpath=//button[@class="mk-btn mk-btn_default"][contains(text(), 'Контракт')]
     Wait Until Element Is Visible  xpath=//div[contains(text(),"Дата пiдписання договору")]
     ${value}=  Run Keyword If
     ...  'datePaid' in '${field}'  Get Text  xpath=//div[contains(text(),"Дата сплати")]/following-sibling::div[1]
@@ -546,7 +544,7 @@ Proposition
     [Arguments]  ${username}  ${tender_uaid}  ${number}
     rwsbank.Перейти на сторінку кваліфікації
     Reload Page
-    Page Should Contain Element  xpath=//button[contains(text(), "Договір")]
+    Page Should Contain Element  xpath=//button[contains(text(), "Контракт")]
     Log  Необхідні дії було виконано у "Завантажити протокол аукціону в авард"
 
 
@@ -568,9 +566,9 @@ Proposition
     [Arguments]  ${username}  ${tender_uaid}  ${number}  ${file_path}
     rwsbank.Пошук Тендера По Ідентифікатору  ${username}  ${tender_uaid}
     rwsbank.Перейти на сторінку кваліфікації
-    Wait Until Element Is Visible  xpath=//button[contains(text(), "Договір")]
-    Click Element  xpath=//button[contains(text(), "Договір")]
-    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Договір")]
+    Wait Until Element Is Visible  xpath=//button[contains(text(), "Контракт")]
+    Click Element  xpath=//button[contains(text(), "Контракт")]
+    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Контракт")]
     Choose File  //div[@id="uploadcontract"]/descendant::input  ${file_path}
     Input Text  //input[@id="contract-contractnumber"]  1234567890
     Click Element  //button[@id="contract-fill-data"]
@@ -583,8 +581,8 @@ Proposition
 Вказати дату отримання оплати
     [Arguments]  ${username}  ${tender_uaid}  ${contract_number}  ${datePaid}
     rwsbank.Перейти на сторінку кваліфікації
-    Click Element  xpath=//button[contains(text(), "Договір")]
-    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Договір")]
+    Click Element  xpath=//button[contains(text(), "Контракт")]
+    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Контракт")]
     ${file}=  my_file_path
     Choose File  //div[@id="uploadcontract"]/descendant::input  ${file}
     ${paid_date}=  convert_date_for_datePaid  ${datePaid}
