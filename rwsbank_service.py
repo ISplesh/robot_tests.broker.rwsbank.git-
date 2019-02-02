@@ -11,7 +11,7 @@ tz = str(datetime.now(pytz.timezone('Europe/Kiev')))[26:]
 
 def prepare_tender_data(role, data):
     if role == 'tender_owner':
-        data['data']['procuringEntity']['name'] = u'Тестовый организатор "Банк Ликвидатор"'
+        data['data']['procuringEntity']['name'] = u'Ubisoft'
     return data
 
 
