@@ -418,11 +418,11 @@ Proposition
     [Arguments]  ${username}  ${tender_uaid}  ${field}
     rwsbank.Пошук Тендера По Ідентифікатору  ${username}  ${tender_uaid}
     rwsbank.Перейти на сторінку кваліфікації
-    Click Element  xpath=//button[@class="mk-btn mk-btn_default"][contains(text(), 'Контракт')]
+    Click Element  xpath=//button[@class="mk-btn mk-btn_default"][contains(text(), 'Договір')]
     Wait Until Element Is Visible  xpath=//div[contains(text(),"Дата пiдписання договору")]
     ${value}=  Run Keyword If
     ...  'datePaid' in '${field}'  Get Text  xpath=//div[contains(text(),"Дата сплати")]/following-sibling::div[1]
-    ...  ELSE IF  'status' in '${field}'  Get Text  xpath=//div[contains(text(),"Статус контракту")]/following-sibling::div[1]
+    ...  ELSE IF  'status' in '${field}'  Get Text  xpath=//div[contains(text(),"Статус договору")]/following-sibling::div[1]
     [Return]  ${value}
 
 
@@ -545,7 +545,7 @@ Proposition
     [Arguments]  ${username}  ${tender_uaid}  ${number}
     rwsbank.Перейти на сторінку кваліфікації
     Reload Page
-    Page Should Contain Element  xpath=//button[contains(text(), "Контракт")]
+    Page Should Contain Element  xpath=//button[contains(text(), "Договір")]
     Log  Необхідні дії було виконано у "Завантажити протокол аукціону в авард"
 
 
@@ -567,9 +567,9 @@ Proposition
     [Arguments]  ${username}  ${tender_uaid}  ${number}  ${file_path}
     rwsbank.Пошук Тендера По Ідентифікатору  ${username}  ${tender_uaid}
     rwsbank.Перейти на сторінку кваліфікації
-    Wait Until Element Is Visible  xpath=//button[contains(text(), "Контракт")]
-    Click Element  xpath=//button[contains(text(), "Контракт")]
-    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Контракт")]
+    Wait Until Element Is Visible  xpath=//button[contains(text(), "Договір")]
+    Click Element  xpath=//button[contains(text(), "Договір")]
+    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Договір")]
     Choose File  //div[@id="uploadcontract"]/descendant::input  ${file_path}
     Input Text  //input[@id="contract-contractnumber"]  1234567890
     Click Element  //button[@id="contract-fill-data"]
@@ -582,8 +582,8 @@ Proposition
 Вказати дату отримання оплати
     [Arguments]  ${username}  ${tender_uaid}  ${contract_number}  ${datePaid}
     rwsbank.Перейти на сторінку кваліфікації
-    Click Element  xpath=//button[contains(text(), "Контракт")]
-    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Контракт")]
+    Click Element  xpath=//button[contains(text(), "Договір")]
+    Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Договір")]
     ${file}=  my_file_path
     Choose File  //div[@id="uploadcontract"]/descendant::input  ${file}
     ${paid_date}=  convert_date_for_datePaid  ${datePaid}
