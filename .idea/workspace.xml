@@ -52,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/rwsbank.robot">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="105" column="115" lean-forward="true" selection-start-line="105" selection-start-column="115" selection-end-line="105" selection-end-column="115" />
+              <caret line="105" column="114" selection-start-line="105" selection-start-column="114" selection-end-line="105" selection-end-column="114" />
             </state>
           </provider>
         </entry>
@@ -178,7 +178,7 @@
     <entry file="file://$PROJECT_DIR$/rwsbank.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="105" column="115" lean-forward="true" selection-start-line="105" selection-start-column="115" selection-end-line="105" selection-end-column="115" />
+          <caret line="105" column="114" selection-start-line="105" selection-start-column="114" selection-end-line="105" selection-end-column="114" />
         </state>
       </provider>
     </entry>
