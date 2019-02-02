@@ -395,6 +395,7 @@ Proposition
 Отримати інформацію із тендера
     [Arguments]  ${username}  ${tender_uaid}  ${field}
     Switch Browser  ${my_alias}
+    Run Keyword If  '${field}' == 'auctionPeriod.startDate'  Reload Page
     Run Keyword If  'title' in '${field}'  Execute Javascript  $("[data-test-id|='title']").css("text-transform", "unset")
     ${value}=  Run Keyword If
     ...  '${field}' == 'title'  Get Text  xpath=//*[@data-test-id="title"]
@@ -526,7 +527,7 @@ Proposition
     Click Element  xpath=//button[contains(text(), "Завантаження протоколу")]
     Wait Until Element Is Visible  //div[contains(text(), "Завантаження протоколу")]
     Choose File  //div[@id="verification-form-upload-file"]/descendant::input[@name="FileUpload[file][]"]  ${file_path}
-    Wait Until Element Is Visible  //button[contains(@class, "delete-file-verification")]
+    Wait Until Element Is Visible  //button[contains(@class, "mk-btn mk-btn_danger delete-file-verification")]
     Click Element  //button[@name="protokol_ok"]
     Wait Until Element Is Not Visible  //button[@name="protokol_ok"]
     Wait Until Keyword Succeeds  30 x  20 s  Run Keywords
