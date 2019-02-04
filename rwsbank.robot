@@ -79,7 +79,7 @@ ${acceleration}=  70
     Input Text  //*[@id="contactpoint-name"]  ${data.procuringEntity.contactPoint.name}
     Input Text  //*[@id="contactpoint-email"]  ${data.procuringEntity.contactPoint.email}
     Input Text  //*[@id="contactpoint-telephone"]  '000${data.procuringEntity.contactPoint.telephone}'
-    Execute Javascript  $("input[name='procurementMethodDetails']").val('quick, accelerator=70');
+    Execute Javascript  $("input[name='procurementMethodDetails']").val('quick, accelerator=45');
     Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="tenderID"]  20
     ${auction_id}=  Get Text  xpath=//div[@data-test-id="tenderID"]
