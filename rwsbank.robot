@@ -296,7 +296,7 @@ ${host}  https://npl.rwsbank.net.ua
     Input Text  name=Lot[auctions][1][tenderingDuration]  ${duration}
     Input Text  name=Lot[auctions][2][auctionParameters][dutchSteps]  20
     Scroll To And Click Element  id=btn-submit-form
-    Wait Until Element Is Visible  xpath=//a[contains(@href, "lot/update")]
+    Wait Until Element Is Visible  xpath=//a[contains(@href, "lot/view")]
     Click Element  name=verification_submit
     Wait Until Element Is Visible  xpath=//*[@data-test-id="status"][contains(text(), "Перевірка доступності об’єкту")]
 
