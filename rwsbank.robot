@@ -7,7 +7,7 @@ Library  DateTime
 Library  rwsbank_service.py
 
 *** Variables ***
-${host}  https://npl.rwsbank.net.ua
+${host}  https://test.torgy.rwsbank.com.ua
 
 *** Keywords ***
 
@@ -440,7 +440,7 @@ ${host}  https://npl.rwsbank.net.ua
     Select From List By Value  xpath=(//select[@id="document-${last_input_number}-documenttype"])[last()]  ${doc_type}
     Scroll To And Click Element  id=btn-submit-form
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
-    Wait Until Keyword Succeeds  50 x  10 s  Run Keywords
+    Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
     ...  Reload Page
     ...  AND  Wait Until Page Does Not Contain   Документ завантажується...  10
 
