@@ -1006,7 +1006,7 @@ JQuery Ajax Should Complete
 Вказати дату прийняття наказу
     [Arguments]  ${username}  ${contract_uaid}  ${dateMet}
     rwsbank.Пошук договору по ідентифікатору  ${username}  ${contract_uaid}
-    Click Element  xpath=//button[contains(text(), 'Наказ про завершення')]
+    Click Element  xpath=//button[contains(text(), 'Наказ про завершення приватизації')]
     Wait Until Keyword Succeeds  10 x  1 s  Wait Until Element Is Visible  xpath=//button[contains(text(), 'Завантажити дані')]
     Click Element  xpath=//div[contains(text(), 'Додати документ')]
     ${file_path}=   get_upload_file_path
