@@ -943,7 +943,7 @@ JQuery Ajax Should Complete
     Wait Until Element Is Visible  xpath=//button[contains(text(), "Шукати")]
     Input Text  id=contractingsearch-contract_cbd_id  ${contract_uaid}
     Click Element  xpath=//button[contains(text(), "Шукати")]
-    Wait Until Keyword Succeeds  30 x  2 s  Wait Until Element Is Visible  xpath=//div[@class="search-result"]/descendant::div[contains(text(), "${contract_uaid}")]
+    Wait Until Keyword Succeeds  30 x  3 s  Wait Until Element Is Visible  xpath=//div[@class="search-result"]/descendant::div[contains(text(), "${contract_uaid}")]
     Run Keyword And Ignore Error  Wait Until Keyword Succeeds  20 x  3 s  Run Keywords
     ...  Click Element  xpath=//div[@class="search-result"]/descendant::div[contains(text(), "${contract_uaid}")]/../../div[2]/a[contains(@href, "/contracting/view")]
     ...  AND  Wait Until Element Is Not Visible  xpath=//button[contains(text(), "Шукати")]  10
@@ -1025,12 +1025,12 @@ JQuery Ajax Should Complete
 Підтвердити відсутність наказу про приватизацію
     [Arguments]  ${username}  ${contract_uaid}  ${file_path}
     rwsbank.Пошук договору по ідентифікатору  ${username}  ${contract_uaid}
-    Click Element  xpath=//button[contains(text(), 'Наказ про завершення')]
+    Click Element  xpath=//button[contains(text(), 'Наказ про завершення приватизації')]
     Wait Until Keyword Succeeds  10 x  1 s  Wait Until Element Is Visible  xpath=//button[contains(text(), 'Завантажити дані')]
     Click Element  xpath=//div[contains(text(), 'Додати документ')]
     Choose File  xpath=//input[contains(@id,"ajax-upload-id")]  ${file_path}
     Wait Until Element Is Visible  xpath=//select[@class="document-type"][@id="document-0-documenttype"]
-    Select From List By Label  xpath=//select[@id="document-0-documenttype"]  Наказ про завершення приватизації відсутній
+    Select From List By Label  xpath=//select[@id="document-0-documenttype"]  Документ  про відсутність наказу про завершення приватизації об’єкта
     Select From List By Value  xpath=//select[@id="milestone-status"]  notMet
     Click Element  xpath=//button[@class="mk-btn mk-btn_accept"]
     Wait Until Element Is Not Visible  xpath=//*[contains(@class, "modal-backdrop")]
