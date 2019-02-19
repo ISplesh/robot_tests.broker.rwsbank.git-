@@ -1030,7 +1030,7 @@ JQuery Ajax Should Complete
     Click Element  xpath=//div[contains(text(), 'Додати документ')]
     Choose File  xpath=//input[contains(@id,"ajax-upload-id")]  ${file_path}
     Wait Until Element Is Visible  xpath=//select[@class="document-type"][@id="document-0-documenttype"]
-    Select From List By Label  xpath=//select[@id="document-0-documenttype"]  Документ  про відсутність наказу про завершення приватизації об’єкта
+    Select From List By Value  xpath=//select[@id="document-0-documenttype"]  rejectionProtocol
     Select From List By Value  xpath=//select[@id="milestone-status"]  notMet
     Click Element  xpath=//button[@class="mk-btn mk-btn_accept"]
     Wait Until Element Is Not Visible  xpath=//*[contains(@class, "modal-backdrop")]
