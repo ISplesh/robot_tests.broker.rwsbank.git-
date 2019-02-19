@@ -100,7 +100,7 @@ def adapted_dictionary(value):
         u'Прийняття заяв на участь': 'active.qualification',
         u'Очікується опублікування протоколу': 'active.qualification',
         u'Очікується рішення': 'pending.waiting',
-        u'Очікується протокол': 'pending',
+        u'Очікується протокол': 'pending.waiting',
         u'Рішення скасоване': 'unsuccessful',
         u'Відмова від очікування': 'cancelled',
         u'Очікується рішення про викуп': 'pending.admission',
