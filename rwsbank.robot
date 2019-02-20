@@ -288,6 +288,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Input Text  name=Lot[auctions][0][bankAccount][accountIdentification][0][id]  ${bank_id}
     Input Text  name=Lot[auctions][0][bankAccount][accountIdentification][1][id]  123456
     Input Text  name=Lot[auctions][0][bankAccount][accountIdentification][2][id]  1234567890
+    Execute Javascript  $("input[name='lot_procurementMethodDetails']").val('180');
 
 
 Заповнити дані для другого аукціону
