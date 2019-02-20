@@ -865,7 +865,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Run Keyword If  ${status_q}  Click Element  xpath=//a[contains(text(), "Таблиця квалiфiкацiї")]
     ...  ELSE IF  ${status_p}  Click Element  xpath=//a[contains(text(), "Протокол розкриття пропозицiй")]
     Закрити Модалку
-    Wait Until Element Is Visible  xpath=//h1[contains(text(), "        Квалiфiкацiя учасникiв")]
+    Wait Until Element Is Visible  xpath=//h1[contains(text(), "Квалiфiкацiя учасникiв")]
 
 ##################################################################################
 Input Amount
