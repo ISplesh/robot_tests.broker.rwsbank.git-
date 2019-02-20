@@ -975,7 +975,8 @@ JQuery Ajax Should Complete
     Wait Element Animation  xpath=//input[@name="Milestone[dateMet]"]
     Focus  xpath=//input[@name="Milestone[dateMet]"]
     Clear Element Text	xpath=//input[@name="Milestone[dateMet]"]
-    Input Text  xpath=//input[@name="Milestone[dateMet]"]  ${date_paid}
+#    Input Text  xpath=//input[@name="Milestone[dateMet]"]  ${date_paid}
+    Execute Javascript  $("[name='Milestone[dateMet]']")[0].value = "${date_paid}"
     Sleep  3
     Click Element  xpath=//button[@class="mk-btn mk-btn_accept"][contains(text(),"Завантажити дані")]
     Wait Until Element Is Not Visible  xpath=//*[contains(@class, "modal-backdrop")]
@@ -1014,7 +1015,8 @@ JQuery Ajax Should Complete
     Wait Until Page Contains Element  //select[@id="document-0-documenttype"] /option[contains(text(),"Наказ про завершення приватизації об’єкта")]
     Select From List By Value  xpath=//select[@id="document-0-documenttype"]  approvalProtocol
     ${date_nakaz}  convert_date_for_date_paid  ${dateMet}
-    Input Text  xpath=//input[@name="Milestone[dateMet]"]  ${date_nakaz}
+#    Input Text  xpath=//input[@name="Milestone[dateMet]"]  ${date_nakaz}
+    Execute Javascript  $("[name='Milestone[dateMet]']")[0].value = "${date_paid}"
     Click Element  xpath=//button[@class="mk-btn mk-btn_accept"]
     Wait Until Element Is Not Visible  xpath=//*[contains(@class, "modal-backdrop")]
     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
@@ -1050,7 +1052,8 @@ JQuery Ajax Should Complete
     Wait Until Page Contains Element  //select[@id="document-0-documenttype"] /option[contains(text(),"Документи, що підтверджують виконання умов продажу")]
     Select From List By Value  xpath=//select[@id="document-0-documenttype"]  contractNotice
     ${date_paid}=  convert_date_for_date_paid  ${dateMet}
-    Input Text  xpath=//input[@name="Milestone[dateMet]"]  ${date_paid}
+#    Input Text  xpath=//input[@name="Milestone[dateMet]"]  ${date_paid}
+    Execute Javascript  $("[name='Milestone[dateMet]']")[0].value = "${date_paid}"
     Click Element  xpath=//button[@class="mk-btn mk-btn_accept"][contains(text(),"Завантажити дані")]
     Wait Until Element Is Not Visible  xpath=//*[contains(@class, "modal-backdrop")]
     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
