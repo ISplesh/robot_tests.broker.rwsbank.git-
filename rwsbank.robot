@@ -1000,7 +1000,7 @@ JQuery Ajax Should Complete
     Choose File  xpath=//input[contains(@id,"ajax-upload-id")]  ${file_path}
     Wait Until Element Is Visible  xpath=//select[@id="document-0-documenttype"]
     Select From List By Value  xpath=//select[@id="document-0-documenttype"]  approvalProtocol
-    Click Element  xpath=//button[@class="mk-btn mk-btn_accept"]
+#    Click Element  xpath=//button[@class="mk-btn mk-btn_accept"]
 
 
 Вказати дату прийняття наказу
