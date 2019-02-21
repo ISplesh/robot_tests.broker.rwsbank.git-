@@ -347,7 +347,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ...  ELSE IF  '${field}' == 'description'  Get Text  xpath=//div[@data-test-id="item.description"]
     ...  ELSE IF  '${field}' == 'documents[0].documentType'  Get Text  xpath=//a[contains(@href, "info/ssp_details")]/../following-sibling::div[1]
     ...  ELSE IF  'decisions' in '${field}'  Отримати інформацію про lot decisions  ${field}
-    ...  ELSE IF  'rectificationPeriod' in '${field}'  Get Text  xpath=//div[@data-test-id="rectificationPeriod"]
+    ...  ELSE IF  'rectificationPeriod' in '${field}'  Get Text  xpath=//div[contains(@data-test-id,"rectificationPeriod")]
     ...  ELSE IF  'assets' in '${field}'  Get Element Attribute  xpath=//input[@name="asset_id"]@value
     ...  ELSE IF  'auctions' in '${field}'  Отримати інформацію про lot auctions  ${field}
     ...  ELSE  Get Text  xpath=//*[@data-test-id='${field.replace('lotCustodian', 'procuringEntity')}']
@@ -1091,3 +1091,10 @@ Position Should Equals
     ${status}=  Run Keyword And Return Status  Should Be Equal  ${prev_vert_pos}  ${current_vert_pos}
     Set Test Variable  ${prev_vert_pos}  ${current_vert_pos}
     Should Be True  ${status}
+
+#Wait Until Lot In Verification
+#    Run Keyword
+#     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
+#     Reload Page
+#     Wait Until Element Is Visible   xpath=//*[contains(@class,'col-xs-12 col-sm-6 col-md-8 item-bl_val']  pending
+#     Get Text  xpath=//div[@data-test-id="rectificationPeriod"] //div[contains(@data-test-id,"status")]
