@@ -12,12 +12,12 @@ tz = str(datetime.now(pytz.timezone('Europe/Kiev')))[26:]
 
 
 def prepare_tender_data_asset(tender_data):
-    tender_data['data']['assetCustodian']['identifier']['id'] = u'12655674'
-    tender_data['data']['assetCustodian']['name'] = u'Jmail'
-    tender_data['data']['assetCustodian']['identifier']['legalName'] = u'Jmail'
-    tender_data['data']['assetCustodian']['contactPoint']['name'] = u'dasdasdas'
-    tender_data['data']['assetCustodian']['contactPoint']['telephone'] = u'+38(123)123-32-31'
-    tender_data['data']['assetCustodian']['contactPoint']['email'] = u'cloudemai.l.40@gmail.com'
+    tender_data['data']['assetCustodian']['identifier']['id'] = u'32634342'
+    tender_data['data']['assetCustodian']['name'] = u'Lmail'
+    tender_data['data']['assetCustodian']['identifier']['legalName'] = u'Lmail'
+    tender_data['data']['assetCustodian']['contactPoint']['name'] = u'dasda dasdas dasasd'
+    tender_data['data']['assetCustodian']['contactPoint']['telephone'] = u'+38(124)423-23-22'
+    tender_data['data']['assetCustodian']['contactPoint']['email'] = u'cloudema.i.l.40@gmail.com'
     for item in range(len(tender_data['data']['items'])):
         if tender_data['data']['items'][item]['address']['region'] == u'Київ':
             tender_data['data']['items'][item]['address']['region'] = u'місто Київ'
