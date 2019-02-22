@@ -262,6 +262,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Input Text   name=Lot[decisions][0][decisionID]   ${tender_data.data.decisions[0].decisionID}
     Execute Javascript  $("input[name='lot_procurementMethodDetails']").val('${period_intervals.lots.accelerator}');
     Click Element  name=simple_submit
+    Log Source  DEBUG
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]  20
     ${lot_id}=  Get Text  xpath=//div[@data-test-id="lotID"]
     [Return]  ${lot_id}
@@ -289,6 +290,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Input Text  name=Lot[auctions][0][bankAccount][accountIdentification][0][id]  ${bank_id}
     Input Text  name=Lot[auctions][0][bankAccount][accountIdentification][1][id]  123456
     Input Text  name=Lot[auctions][0][bankAccount][accountIdentification][2][id]  1234567890
+    Log Source  DEBUG
 
 
 Заповнити дані для другого аукціону
@@ -299,6 +301,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     Scroll To And Click Element  id=btn-submit-form
     Wait Until Element Is Visible  xpath=//a[contains(@href, "lot/view")]
     Click Element  name=verification_submit
+    Log Source  DEBUG
     Wait Until Element Is Visible  xpath=//*[@data-test-id="status"][contains(text(), "Перевірка доступності об’єкту")]
 
 
@@ -352,6 +355,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ...  ELSE IF  'auctions' in '${field}'  Отримати інформацію про lot auctions  ${field}
     ...  ELSE  Get Text  xpath=//*[@data-test-id='${field.replace('lotCustodian', 'procuringEntity')}']
     ${value}=  adapt_asset_data  ${field}  ${value}
+    Log Source  DEBUG
     [Return]  ${value}
 
 
@@ -1093,8 +1097,7 @@ Position Should Equals
     Should Be True  ${status}
 
 #Wait Until Lot In Verification
-#    Run Keyword
 #     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
-#     Reload Page
-#     Wait Until Element Is Visible   xpath=//*[contains(@class,'col-xs-12 col-sm-6 col-md-8 item-bl_val']  pending
-#     Get Text  xpath=//div[@data-test-id="rectificationPeriod"] //div[contains(@data-test-id,"status")]
+#     ...  Reload Page
+#     ...  Element Should Visible   xpath=//div[contains(@data-test-id,"status") and not (contains(@data-test-id,"auction"))]  Опубліковано
+#     ${} = Get Text  xpath=//div[contains(@data-test-id="rectificationPeriod")]
