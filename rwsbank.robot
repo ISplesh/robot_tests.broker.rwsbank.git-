@@ -482,7 +482,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
     ...  ELSE IF  '${fieldname}' == 'minimalStep.amount'  Input Amount  name=Lot[auctions][${index}][minimalStep][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'guarantee.amount'  Input Amount  name=Lot[auctions][${index}][guarantee][amount]  ${fieldvalue}
     ...  ELSE IF  '${fieldname}' == 'registrationFee.amount'  Input Amount  name=Lot[auctions][${index}][registrationFee][amount]  ${fieldvalue}
-    ...  ELSE IF  '${fieldname}' == 'auctionPeriod.startDate'  Input Date Auction  name=Lot[auctions][${index}][auctionPeriod][startDate]  ${fieldvalue}.000000+03:00
+    ...  ELSE IF  '${fieldname}' == 'auctionPeriod.startDate'  Input Date Auction  name=Lot[auctions][${index}][auctionPeriod][startDate]  ${fieldvalue}
     Scroll To And Click Element  //*[@name="simple_submit"]
     Wait Until Element Is Visible  xpath=//div[@data-test-id="lotID"]
 
@@ -889,7 +889,7 @@ Input Date Milestone
 
 Input Date Auction
     [Arguments]  ${locator}  ${value}
-    ${value}=  convert_date_for_auction  ${value}
+#    ${value}=  convert_date_for_auction  ${value}
     Clear Element Text  ${locator}
     Input Text  ${locator}  ${value}
 
@@ -1099,5 +1099,6 @@ Position Should Equals
 #Wait Until Lot In Verification
 #     Wait Until Keyword Succeeds  30 x  10 s  Run Keywords
 #     ...  Reload Page
-#     ...  Element Should Visible   xpath=//div[contains(@data-test-id,"status") and not (contains(@data-test-id,"auction"))]  Опубліковано
-#     ${} = Get Text  xpath=//div[contains(@data-test-id="rectificationPeriod")]
+#     ...  Element Should Be Visible   xpath=//div[contains(@data-test-id,"status") and not (contains(@data-test-id,"auction"))]
+#     ...  Element Should Contain  xpath=//div[contains(@data-test-id,"status") and not (contains(@data-test-id,"auction"))]  Опубліковано
+#     ${rectificationPeriod} = Get Text  xpath=//div[contains(@data-test-id="rectificationPeriod")]
