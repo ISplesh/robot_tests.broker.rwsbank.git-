@@ -706,7 +706,7 @@ ${host}  https://test.torgy.rwsbank.com.ua
 
 
 Отримати посилання на аукціон для глядача
-    [Arguments]  ${viewer}  ${tender_uaid}
+    [Arguments]  ${viewer}  ${tender_uaid}  ${lot_id}=${Empty}
     rwsbank.Пошук Тендера По Ідентифікатору  ${viewer}  ${tender_uaid}
     ${link}=  Get Element Attribute  xpath=//*[contains(text(), "Посилання")]/../descendant::*[@class="h4"]/a@href
     [Return]  ${link}
