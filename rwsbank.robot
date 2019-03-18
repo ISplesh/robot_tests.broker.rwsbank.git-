@@ -55,8 +55,11 @@ ${acceleration}=  70
     ${items}=  Get From Dictionary  ${tender_data.data}  items
     Click Element  xpath=//li[@class="dropdown"]/descendant::*[@class="dropdown-toggle"][contains(@href, "tenders")]
     Click Element  xpath=//*[@class="dropdown-menu"]/descendant::*[contains(@href, "/tenders/index")]
-    Click Element  xpath=//a[contains(@href, "/buyer/tender/create")]
-    Select From List By Value  xpath=//select[@id="tender-method-select"]  open_${data.procurementMethodType}
+    Click Element  xpath=//button[contains(@id, "create_auction_modal_btn")]
+    Wait Element Animation  xpath=//select[contains(@id, "tenders-tender_method")]
+    Select From List By Value  xpath=//select[contains(@id, "tenders-tender_method")]  open_${data.procurementMethodType}
+    Click Element  xpath=//button[contains(@id, "disqualification")]
+    Wait Until Element Is Visible  xpath=//input[@id="value-amount"]
     Convert Input Data To String  xpath=//input[@id="value-amount"]  ${tender_data.data.value.amount}
     Adapt And Select By Value  xpath=//select[@id="value-valueaddedtaxincluded"]  ${tender_data.data.value.valueAddedTaxIncluded}
     Convert Input Data To String  //input[@id="minimalstepvalue-amount"]  ${tender_data.data.minimalStep.amount}
