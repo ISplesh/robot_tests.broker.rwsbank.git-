@@ -585,6 +585,7 @@ Proposition
 Вказати дату отримання оплати
     [Arguments]  ${username}  ${tender_uaid}  ${contract_number}  ${datePaid}
     rwsbank.Перейти на сторінку кваліфікації
+    Wait Until Element Is Visible  xpath=//button[contains(text(), "Договір")]  20
     Click Element  xpath=//button[contains(text(), "Договір")]
     Wait Until Element Is Visible  //div[contains(@class, "h2")][contains(text(), "Договір")]
     ${file}=  my_file_path
